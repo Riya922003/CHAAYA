@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAAYA - CME Detection System</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #2d3a4b 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 2px solid #ff6b35;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .logo-image {
+            width: 80px;
+            height: 80px;
+            background: url('https://i.ibb.co/XxVh41ck/2a363924-43d3-4941-96f3-5ca0c9849e93.jpg') center/contain no-repeat;
+            border-radius: 50%;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #ff6b35, #003366);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .mission-badge {
+            background: linear-gradient(45deg, #ff6b35, #003366);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            color: #003366;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 10px;
+        }
+
+        .diagram-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            border: 1px solid #ff6b35;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid #ff6b35;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .isro-footer {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            background: linear-gradient(45deg, #003366, #ff6b35);
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .isro-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-image"></div>
+                <h1>CHAAYA</h1>
+            </div>
+            <p class="subtitle">CME Hazard Alert And Yield Analysis</p>
+            <p class="subtitle">Dual-Stage Machine Learning System for Halo CME Detection and Classification</p>
+            <div class="mission-badge">Powered by Aditya-L1 SWIS Data • ISRO Space Weather Initiative</div>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Project Overview</h2>
+            <p>CHAAYA is an advanced early warning system that leverages real-time particle data from India's Aditya-L1 mission to detect and classify Coronal Mass Ejections (CMEs) that pose threats to Earth's space environment. Our dual-stage machine learning approach provides crucial lead time for implementing protective measures for space assets and terrestrial infrastructure.</p>
+            
+            <p style="margin-top: 20px; font-style: italic; color: #666;">This system is designed to support ISRO's space weather monitoring capabilities and contribute to India's growing expertise in space-based early warning systems for protecting critical space infrastructure.</p>
+        </div>
+
+        <div class="section">
+            <h2>🏗️ System Architecture</h2>
+            <div class="diagram-container">
+                <div class="mermaid">
+                    flowchart TD
+                        A[Aditya-L1 SWIS Real-time Data Stream] --> B[Data Ingestion Layer]
+                        B --> C[Data Preprocessing & Quality Checks]
+                        C --> D[Feature Engineering]
+                        D --> E[Data Buffer & Sliding Window]
+                        
+                        E --> F[Stage 1: CME Detection Engine]
+                        F --> G[Anomaly Detection Module]
+                        G --> H[Pattern Recognition]
+                        H --> I[Threshold Optimization]
+                        I --> J{CME Event Detected?}
+                        
+                        J -->|No| K[Continue Monitoring]
+                        K --> E
+                        J -->|Yes| L[Event Validation]
+                        
+                        L --> M[Stage 2: CME Classification Engine]
+                        M --> N[Feature Extraction]
+                        N --> O[Severity Assessment]
+                        O --> P[Impact Prediction]
+                        P --> Q[Confidence Scoring]
+                        
+                        Q --> R[CHAAYA Alert System]
+                        R --> S[Multi-channel Notifications]
+                        R --> T[Risk Communication]
+                        R --> U[Decision Support]
+                        
+                        S --> V[ISRO Space Weather Center]
+                        T --> V
+                        U --> V
+                        
+                        classDef dataSource fill:#e3f2fd
+                        classDef processing fill:#f3e5f5
+                        classDef detection fill:#e8f5e8
+                        classDef classification fill:#fff3e0
+                        classDef alert fill:#ffebee
+                        classDef output fill:#f1f8e9
+                        
+                        class A dataSource
+                        class B,C,D,E processing
+                        class F,G,H,I,J,K,L detection
+                        class M,N,O,P,Q classification
+                        class R,S,T,U alert
+                        class V output
+                </div>
+            </div>
+            
+            <div class="explanation-box">
+                <h3>🔍 How CHAAYA Works - Step by Step</h3>
+                <div class="explanation-content">
+                    <p><strong>Step 1 - Data Collection:</strong> The Aditya-L1 satellite continuously sends data about solar wind and particles to Earth. This data comes in real-time, 24/7.</p>
+                    
+                    <p><strong>Step 2 - Data Cleaning:</strong> The raw data is cleaned and organized. We remove any errors or missing information to ensure accuracy.</p>
+                    
+                    <p><strong>Step 3 - First Detection Stage:</strong> Our smart computer system looks for unusual patterns in the data that might indicate a CME (solar storm) is coming toward Earth.</p>
+                    
+                    <p><strong>Step 4 - Verification:</strong> When something unusual is found, the system double-checks to make sure it's really a CME and not just random noise.</p>
+                    
+                    <p><strong>Step 5 - Classification Stage:</strong> Once confirmed, the system determines how dangerous this CME might be - whether it's weak, moderate, or strong.</p>
+                    
+                    <p><strong>Step 6 - Alert Generation:</strong> Based on the danger level, CHAAYA sends appropriate alerts to ISRO scientists and satellite operators so they can take protective action.</p>
+                    
+                    <p><strong>Key Benefit:</strong> This entire process happens automatically and gives us 30-60 minutes of advance warning before a solar storm hits Earth's satellites.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👥 Use Case Diagram</h2>
+            <div class="diagram-container">
+                <div class="mermaid">
+                    graph LR
+                        subgraph "CHAAYA System"
+                            UC1[Monitor Solar Wind Data]
+                            UC2[Detect CME Events]
+                            UC3[Classify CME Severity]
+                            UC4[Send Alerts]
+                            UC5[Generate Reports]
+                            UC6[Visualize Data]
+                            UC7[Manage Thresholds]
+                            UC8[Validate Events]
+                        end
+                        
+                        subgraph "External Systems"
+                            EXT1[Aditya-L1 SWIS]
+                            EXT2[CACTUS Catalog]
+                            EXT3[Other Space Weather Instruments]
+                        end
+                        
+                        subgraph "Users"
+                            U1[ISRO Space Weather Operator]
+                            U2[Satellite Mission Controller]
+                            U3[Mission Planning Team]
+                            U4[Space Weather Researcher]
+                            U5[System Administrator]
+                        end
+                        
+                        EXT1 --> UC1
+                        EXT2 --> UC8
+                        EXT3 --> UC8
+                        
+                        UC1 --> UC2
+                        UC2 --> UC3
+                        UC3 --> UC4
+                        UC1 --> UC6
+                        UC4 --> UC5
+                        
+                        U1 --> UC1
+                        U1 --> UC2
+                        U1 --> UC4
+                        U1 --> UC6
+                        U2 --> UC4
+                        U2 --> UC6
+                        U3 --> UC5
+                        U3 --> UC6
+                        U4 --> UC5
+                        U4 --> UC6
+                        U4 --> UC8
+                        U5 --> UC7
+                        U5 --> UC8
+                        
+                        classDef usecase fill:#e3f2fd
+                        classDef user fill:#e8f5e8
+                        classDef external fill:#fff3e0
+                        
+                        class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8 usecase
+                        class U1,U2,U3,U4,U5 user
+                        class EXT1,EXT2,EXT3 external
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>⚡ Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-title">🎯 Dual-Stage Processing</div>
+                    <p>Advanced two-stage machine learning pipeline with specialized detection and classification engines for maximum accuracy and reliability in CME event identification.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">⚡ Real-time Processing</div>
+                    <p>Continuous analysis of streaming SWIS data with millisecond-level response times for immediate threat detection and early warning capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">🤖 Adaptive Learning</div>
+                    <p>Self-improving algorithms that adapt to changing solar conditions and continuously optimize detection thresholds based on historical data patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">📊 Multi-parameter Analysis</div>
+                    <p>Comprehensive analysis of particle flux, velocity, density, temperature, and magnetic field parameters from Aditya-L1 instruments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">🔔 Intelligent Alerts</div>
+                    <p>Severity-based alert system with multi-channel notifications and automated escalation procedures for critical space weather events.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">📈 Advanced Visualization</div>
+                    <p>Interactive dashboards with real-time monitoring, trend analysis, and predictive visualizations for comprehensive space weather situational awareness.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="isro-footer">
+            <h3>🚀 CHAAYA - Advancing Space Weather Protection through AI</h3>
+            <p>Leveraging India's Aditya-L1 Mission for Enhanced Space Weather Monitoring</p>
+            <div class="isro-badge">Developed for ISRO Space Weather Initiative</div>
+            <p style="margin-top: 15px; font-size: 0.9em; opacity: 0.9;">
+                Supporting India's vision of becoming a global leader in space weather prediction and satellite protection
+            </p>
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
